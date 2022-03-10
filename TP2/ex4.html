@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myCarre {
+            width: 22px;
+            height: 22px;
+            background-color: red;
+            transition: 0.2s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myCarre"></div>
+    <script>
+        document.onkeydown = moveCarre;
+
+        function moveCarre(e) {
+
+            let posLeft = document.getElementById('myCarre').offsetLeft;
+            let posTop = document.getElementById('myCarre').offsetTop;
+
+            e = e || window.event;
+
+            if (e.keyCode == '38') {
+                // up arrow
+                document.getElementById('myCarre').style.marginTop = (posTop - 58) + "px";
+            }
+            else if (e.keyCode == '40') {
+                // down arrow
+                document.getElementById('myCarre').style.marginTop = (posTop + 58) + "px";
+            }
+            else if (e.keyCode == '37') {
+                // left arrow
+                document.getElementById('myCarre').style.marginLeft = (posLeft - 58) + "px";
+            }
+            else if (e.keyCode == '39') {
+                // right arrow
+                document.getElementById('myCarre').style.marginLeft = (posLeft + 58) + "px";
+            }
+
+        }
+    </script>
+</body>
+
+</html>
