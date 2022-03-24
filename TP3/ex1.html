@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .container .div1,
+        .container .div2,
+        .container .div3 {
+            height: 40px;
+            width: 40px;
+        }
+
+        .color-black {
+            background-color: black;
+        }
+
+        .color-red {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="div1 color-black"></div>
+        <div class="div2 color-black"></div>
+        <div class="div3 color-black"></div>
+    </div>
+
+    <script>
+        let divs = document.querySelectorAll('.container div');
+
+        divs.forEach(div => {
+            div.addEventListener('click', function () {
+                if (div.classList.contains('color-black')) {
+                    div.classList.remove('color-black');
+                    div.classList.add('color-red')
+                } else if (div.classList.contains('color-red')) {
+                    div.classList.remove('color-red');
+                    div.classList.add('color-black')
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>
