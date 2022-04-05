@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Ecrire une fonction  capitalize(str)  qui transforme chaque première lettre de chaque mot en majuscule
+        const capitalize = function (str) {
+            str = str.split(" ");
+            for (let i = 0; i < str.length; i++) {
+                str[i] = str[i][0].toUpperCase() + str[i].substr(1);
+            }
+            return str.join(" ");
+        }
+
+        console.log(capitalize("hello je suis leo"));
+
+    </script>
+</body>
+
+</html>
