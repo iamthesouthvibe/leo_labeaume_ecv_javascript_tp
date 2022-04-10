@@ -1,0 +1,21 @@
+<script>
+    /*Créez une fonction qui prend en paramètre une chaîne de caractère, si la chaîne de caractère fait plus de 20
+caractères, la promesse échoue, sinon la fonction renvoie true
+*/
+
+    const maxTwentyString = ((string) => {
+        return new Promise((resolve, reject) => {
+            if (string.length <= 20) {
+                resolve()
+            } else {
+                reject();
+            }
+        })
+    })
+
+    maxTwentyString('bon').then(() => {
+        return true;
+    }).catch(() => {
+        return false
+    })
+</script>

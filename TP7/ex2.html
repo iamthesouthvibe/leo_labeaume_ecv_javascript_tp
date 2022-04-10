@@ -1,0 +1,23 @@
+<script>
+    /*
+    2. Créez  une  fonction  qui  prend  en  paramètre  deux  int,  si  la  première  variable  est  supérieure  à  la  seconde,  la
+    promesse renvoie la différence entre les deux variables, sinon elle échoue.
+    */
+
+    const calcul = ((num1, num2) => {
+        return new Promise((resolve, reject) => {
+            const diff = Math.abs(num1 - num2);
+            if (num1 > num2) {
+                resolve(diff);
+            } else {
+                reject();
+            }
+        })
+    })
+
+    calcul(30, 8).then((diff) => {
+        console.log('Resutat : ' + diff)
+    }).catch(() => {
+        console.log('Error');
+    })
+</script>
