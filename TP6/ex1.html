@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        En Italie, chaque personne possède un code d'identification unique délivré par l'administration fiscale nationale après l'enregistrement de la
+        naissance : le code fiscal (Codice Fiscale). Consultez la page https://en.wikipedia.org/wiki/Italian_fiscal_code pour plus d’informations
+        Vous aurez à disposition un objet contenant les données personnelles d'une personne (nom, prénom, sexe et date de naissance), Créer une
+        fonction fiscalCode qui renvoie les 11 caractères du code sous forme de chaîne de caractères en suivant ces étapes :
+        Générez 3 lettres majuscules à partir du nom de famille, s’il y a:
+        Au moins 3 consonnes,prendre les 3 premières consonnes. (Newman -> NWM).
+        Moins de 3 consonnes, les voyelles remplaceront les caractères manquants dans le même ordre qu'ils apparaissent (Fox -> FXO | Hope ->
+        HPO). Moins de trois lettres, "X" prendra le troisième emplacement après la consonne et la voyelle (Yu -> YUX).
+        Générez 3 lettres majuscules à partir du nom, s’il y a :
+        Exactement 3 consonnes ,les consonnes sont utilisées dans l'ordre où elles apparaissent (Matt -> MTT). Plus de 3 consonnes , la première,
+        troisième et quatrième consonnes sont utilisées (Samantha -> SNT | Thomas -> TMS).
+        Moins de 3 consonnes, les voyelles remplaceront les caractères manquants dans le même ordre qu'ils apparaissent (Bob -> BBO | Paula ->
+        PLA).
+        */
+
+        const person = { nom: 'Edabit', prenom: 'Matt', sexe: 'M', dateAnniversaire: '1/1/1900' };
+
+        console.log(getName(person.nom) + getPrenom(person.prenom) + getBirthCode(person.dateAnniversaire, person.sexe));
+
+        fiscalCode('Edabit', 'Matt', 'M', '1/1/1900')
+
+
+        function fiscalCode(nom, prenom, sexe, date) {
+            getName(nom);
+            getPrenom(prenom);
+            getBirthCode(date, sexe);
+
+            console.log(newName + NewPrenom + newDate);
+        }
+
+        // Genere le code date et sexe
+        function getBirthCode(date, sexe) {
+            const split = date.split('/');
+            let day = split[0];
+            let month = split[1];
+            let year = split[2].substr(-2);
+            switch (month) {
+                case '1':
+                    month = 'A';
+                    break;
+                case '2':
+                    month = 'B';
+                    break;
+                case '3':
+                    month = 'C';
+                    break;
+                case '4':
+                    month = 'D';
+                    break;
+                case '5':
+                    month = 'E';
+                    break;
+                case '6':
+                    month = 'H';
+                    break;
+                case '7':
+                    month = 'L';
+                    break;
+                case '8':
+                    month = 'M';
+                    break;
+                case '9':
+                    month = 'P';
+                    break;
+                case '10':
+                    month = 'R';
+                    break;
+                case '11':
+                    month = 'S';
+                    break;
+                case '12':
+                    month = 'T';
+                    break;
+                default:
+                    break;
+            }
+            if (sexe == 'M') {
+                if (day == '1' || day == '2' || day == '3' || day == '4' || day == '5' || day == '6' || day == '7' || day == '8' || day == '9') {
+                    day = '0' + day
+                }
+            } else {
+                day = parseInt(day)
+                day = day + 40;
+                day = day.toString()
+            }
+            newDate = year + month + day;
+            return newDate
+        }
+
+        // genere le prenom
+        function getPrenom(prenom) {
+            prenom = prenom.toLowerCase();
+            let newPrenom = '';
+            prenom.toLowerCase();
+            consonnesNumber = consonne_count(prenom);
+            if (consonnesNumber == 3) {
+                for (var i = 0; i < prenom.length; i++) {
+                    if (prenom[i] !== 'a' && prenom[i] !== 'e' && prenom[i] !== 'i' && prenom[i] !== 'o' && prenom[i] !== 'u') {
+                        newPrenom += prenom[i];
+                    }
+                }
+            } else if (consonnesNumber > 3) {
+                let getConsonnes = prenom.match(/[bdcfghjklmnpqrstvwz]/ig).join("");
+                newPrenom = getConsonnes[0] + getConsonnes[2] + getConsonnes[3];
+            } else if (consonnesNumber < 3 && consonnesNumber > 1) {
+                let getVowel = s.match(/[aeiou]/ig).join("");
+                for (var i = 0; i < s.length; i++) {
+                    if (prenom[i] !== 'a' && prenom[i] !== 'e' && prenom[i] !== 'i' && prenom[i] !== 'o' && prenom[i] !== 'u') {
+                        newPrenom += prenom[i];
+                    }
+                }
+                newPrenom = newPrenom + getVowel[0];
+            } else if (consonnesNumber == 1) {
+                let getVowel = prenom.match(/[aeiou]/ig).join("");
+                for (var i = 0; i < prenom.length; i++) {
+                    if (prenom[i] !== 'a' && prenom[i] !== 'e' && prenom[i] !== 'i' && prenom[i] !== 'o' && prenom[i] !== 'u') {
+                        newPrenom += prenom[i];
+                    }
+                }
+
+                newPrenom = newPrenom + getVowel[0] + getVowel[0];
+            }
+            return newPrenom.toUpperCase();
+        }
+
+        // Genere le nom
+        function getName(nom) {
+            let newName = '';
+            nom.toLowerCase();
+            consonnesNumber = consonne_count(nom);
+            if (nom.length > 3) {
+                if (consonnesNumber >= 3) {
+                    for (var i = 0; i < nom.length; i++) {
+                        if (nom[i] !== 'a' && nom[i] !== 'e' && nom[i] !== 'i' && nom[i] !== 'o' && nom[i] !== 'u') {
+                            newName += nom[i];
+                        }
+                    }
+                    newName = newName.substr(0, 3)
+                } else {
+                    let getVowel = s.match(/[aeiou]/ig).join("");
+                    for (var i = 0; i < s.length; i++) {
+                        if (nom[i] !== 'a' && nom[i] !== 'e' && nom[i] !== 'i' && nom[i] !== 'o' && nom[i] !== 'u') {
+                            newName += nom[i];
+                        }
+                    }
+                    newName = newName + getVowel[0];
+                }
+            } else {
+                newName = nom + 'X';
+            }
+            return newName.toUpperCase();
+        }
+
+        // retourne le nombre de consonne
+        function consonne_count(s) {
+            var vowel_list = 'bdcfghjklmnpqrstvwzBCDFGHJKLMNPQRSTVWXZ';
+            var vcount = 0;
+
+            for (var x = 0; x < s.length; x++) {
+                if (vowel_list.indexOf(s[x]) !== -1) {
+                    vcount += 1;
+                }
+
+            }
+            return vcount;
+        }
+    </script>
+</body>
+
+</html>
